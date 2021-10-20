@@ -17,6 +17,11 @@ export default StyleSheet.create({
     flexDirection: "column",
   },
 
+  alignCenter: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
   h1: {
     fontSize: 40,
     textAlign: "center",
@@ -35,11 +40,28 @@ export default StyleSheet.create({
   },
 
   bottom: {
-    marginTop: "80%",
+    marginTop: "50%",
   },
 
   overlay: {
     width: "80%",
     height: "80%",
+  },
+
+  imageResponsive: {
+    marginTop: "10%",
+    width: "100%",
+    height: 150,
+  },
+
+  input: {
+    width: "80%",
+  },
+
+  listItem: {
+    width: "90%",
+    margin: "2%",
+    borderRadius: 10,
+    overflow: "hidden",
   }
 })
