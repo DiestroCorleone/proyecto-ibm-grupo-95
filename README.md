@@ -1,11 +1,59 @@
-# Sample Snack app
+# Curso de especialización en desarrollo mobile - Codo a Codo | IBM Skillsbuild
+## Proyecto grupal: aplicación para celular sobre el clima
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
+[Ver en Snack](https://snack.expo.dev/@diestro/-proyecto-ibm-grupo-95)
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo-cli](https://docs.expo.io/get-started/installation).
+[Repositorio en GitHub](https://github.com/DiestroCorleone/proyecto-ibm-grupo-95/)
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
+### Descripción:
 
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.io/c/snack).
+En ese proyecto, generaremos una aplicación que consuma un servicio del clima y permita agregar
+ciudades a un listado. Esta información deberá ser visualizada en un mapa. Cuando el usuario seleccione
+una ciudad se deberá desplegar la temperatura del lugar.
 
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
+## Tecnologías/conceptos a ser usados:
+
+1. __Lenguaje de programación y Toolkit:__ React Native
+2. __Fuentes de datos:__ [API Weather](https://openweathermap.org/current)
+3. __Persistencia de datos:__ SQL Lite (Android) o Core Data (iOS)
+4. __Versionamiento de código:__ Git y Github
+
+## Colaboradores:
+
+* @Vaninaquezada
+* @GayoneEmiliano
+* @paganond
+* @DiestroCorleone
+
+## Detalles del Proyecto
+
+### Nombre de la app:
+
+* Weatherify.
+
+### Navegación:
+
+* __BottomTabNavigator__ que lleva a las stacks de _Home_, _Lista de Ciudades_ y _Mapa_.
+
+### Screens:
+
+* __Home:__ Muestra el título de la aplicación, el clima de la ciudad elegida como principal, y tiene dos botones/links (_Cómo usar la app_ y _Quiénes somos_) que abren un modal para mostar dicha info.
+* __Lista de ciudades:__ Presenta la lista de ciudades guardadas con su correspondiente clima.
+* __Mapa__: Cuenta con un mapa que muestra las ciudades guardadas, y un buscador para agregar más ciudades al listado. Cuenta con un buscador de ciudades. Al 23/10/2021 permite mostrar alerts de error de ingresarse una búsqueda vacía o menor a 3 caracteres, y mostrar nombre e ícono del clima de la ciudad buscada.
+
+### Componentes:
+
+* __ItemWeather:__ Importa ListItem, toma props como nombre de la ciudad e ícono, para reutilizar en diferentes screens.
+* __Modal:__ Modales emergente, importan Overlay de React Native, reutilizables. Permiten agregar/eliminar a ciudades principales/guardadas.
+* __Loading:__ Spinner que muestra pantalla de carga mientras se realizan diversos procesos.
+
+### Styles: 
+
+* En el archivo __Styles.js__, los estilos están separados en diferentes clases con pocas características, volviéndolas así combinables y aplicables a cualquier elemento de nuestra apliacación.
+
+## To do: 
+
+- [x] Al hacer tap sobre un WeatherItem abrirá un diálogo que permitirá _elegir como ciudad principal_ o _eliminar de ciudades guardadas_.
+- [ ] Integración con API Weather.
+- [ ] Persistencia de datos.
+- [ ] Estilos y más.

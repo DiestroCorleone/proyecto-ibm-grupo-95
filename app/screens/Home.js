@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
-import { View, Text, Button } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
 import styles from '../../Styles';
 import { Overlay } from 'react-native-elements';
-import Modal from '../components/Modal';
+import { LinearGradient } from 'expo-linear-gradient';
+import Modal, { ItemWeatherModal } from '../components/Modal';
 import ItemWeather from '../components/ItemWeather';
 
-export default function Home(){  
+export default function Home(){
   const [visible, setVisible] = useState(false);
+  const [visibleWeather, setVisibleWeather] = useState(false);
   const [modalText, setModalText] = useState(null);
 
   const toggleOverlay = (text) => {
@@ -14,18 +16,27 @@ export default function Home(){
     setVisible(!visible);
   };
 
+  const toggleWeatherOverlay = () => {
+    setVisibleWeather(!visibleWeather);
+  };
+  
   return (
-    <View style={[styles.backgroundPurple, styles.background ]}>
+    <View style={styles.flex}>
+    <LinearGradient
+      colors={['steelblue', 'cadetblue']}
+      style={styles.background}
+    />
       <View style={styles.alignCenter}>
       <Text style={ [styles.h1, styles.textWhite] }>Weatherify</Text>
-      <ItemWeather key={0} title={ciudadPrincipal.title} iconType={ciudadPrincipal.iconType} icon={ciudadPrincipal.icon} iconColor={ciudadPrincipal.iconColor} />
+      <ItemWeather key={0} title={ciudadPrincipal.title} iconType={ciudadPrincipal.iconType} icon={ciudadPrincipal.icon} iconColor={ciudadPrincipal.iconColor} onPress={toggleWeatherOverlay} />
       </View>
       <View style={ [styles.flex, styles.column ] }>
       <View style={ [styles.row, styles.bottom, styles.spaceAround ] }>
-        <Text style={styles.textWhite} onPress={ () => toggleOverlay(comoUsar)}>Cómo usar la app</Text><Text style={styles.textWhite} onPress={ () => toggleOverlay(quienesSomos)}>Quiénes somos</Text>
+        <Text style={[styles.textWhite, styles.textButton, styles.backgroundPurple]} onPress={ () => toggleOverlay(comoUsar)}>Cómo usar la app</Text><Text style={[styles.textWhite, styles.textButton, styles.backgroundPurple]} onPress={ () => toggleOverlay(quienesSomos)}>Quiénes somos</Text>
       </View> 
       </View>
         <Modal visible={visible} toggleOverlay={toggleOverlay} modalText={modalText} />
+        <ItemWeatherModal visible={visibleWeather} toggleOverlay={toggleWeatherOverlay} isPrincipal={true} />
     </View>
   );
 }

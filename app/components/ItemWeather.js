@@ -1,20 +1,25 @@
 import React from 'react';
-import { ListItem, Icon } from 'react-native-elements';
+import { ListItem, Icon, Image } from 'react-native-elements';
 import styles from '../../Styles';
 
 export default function ItemWeather(props){
-  const { key, title, iconType, icon, iconColor } = props;
+  const { key, title, iconType, icon, iconColor, onPress, iconFromApi = false } = props;
 
   return(
-    <ListItem key={key} bottomDivider style={styles.listItem}>
+    <ListItem button onPress={onPress} key={key} bottomDivider style={styles.listItem} >
       <ListItem.Content>
         <ListItem.Title>{title}</ListItem.Title>
       </ListItem.Content>
-        <Icon            
-          type={iconType}
-          name={icon}
-          color={iconColor}
-        />
+        { iconFromApi
+          ? <Image
+              source={require(iconFromApi)}
+            />
+          : <Icon            
+              type={iconType}
+              name={icon}
+              color={iconColor}
+            />
+        }
     </ListItem>
   );       
 }
