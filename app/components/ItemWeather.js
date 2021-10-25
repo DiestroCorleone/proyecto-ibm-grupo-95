@@ -23,3 +23,17 @@ export default function ItemWeather(props){
     </ListItem>
   );       
 }
+
+export function CityListItem(props){
+  const { title, onPress } = props;
+
+  return(
+    <ListItem button onPress={onPress} bottomDivider style={styles.listItem} >
+      <ListItem.Content>
+        <ListItem.Title>{title}</ListItem.Title>
+      </ListItem.Content>
+        <Image
+        />
+    </ListItem>
+  );       
+}

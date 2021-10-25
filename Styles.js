@@ -83,6 +83,10 @@ export default StyleSheet.create({
     width: "25%",
   },
 
+  marginSmall: {
+    margin: "5%",
+  },
+
   threeQuarters: {
     width: "75%",
   },
