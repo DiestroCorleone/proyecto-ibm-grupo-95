@@ -10,7 +10,7 @@ export default function CityListStack(){
       <Stack.Screen 
         name="cityList"
         component={ CityList }
-        options={{ title: "Lista de Ciudades" }}
+        options={{ title: "Lista de Ciudades", headerShown: false  }}
       />
     </Stack.Navigator>
   );

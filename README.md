@@ -54,6 +54,9 @@ una ciudad se deberá desplegar la temperatura del lugar.
 ## To do: 
 
 - [x] Al hacer tap sobre un WeatherItem abrirá un diálogo que permitirá _elegir como ciudad principal_ o _eliminar de ciudades guardadas_.
-- [ ] Integración con API Weather.
-- [ ] Persistencia de datos.
+- [x] Integración con API Weather.
+- [x] Persistencia de datos.
 - [ ] Estilos y más.
+- [ ] Mostrar ciudades en mapa.
+- [ ] Borrar contenido searchbar después de búsqueda.
+- [ ] Añadir funcionalidad de búsqueda a Searchbar de screen Ciudades Guardadas.

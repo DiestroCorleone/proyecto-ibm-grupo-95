@@ -74,7 +74,7 @@ export default function Map(){
   };
 
   return (
-    <View style={[styles.alignCenter]}>
+    <View style={[styles.flex, styles.alignTop,styles.backgroundSky]}>
       <Searchbar
         placeholder="Ingresá el nombre de una ciudad..."
         onChange={(e) => onChange(e, "cityName")}

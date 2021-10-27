@@ -10,7 +10,7 @@ export default function MapStack(){
       <Stack.Screen 
         name="map"
         component={ Map }
-        options={{ title: "Mapa" }}
+        options={{ title: "Mapa", headerShown: false  }}
       />
     </Stack.Navigator>
   );

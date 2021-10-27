@@ -22,6 +22,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
 
+  alignTop: {
+    justifyContent: 'flex-start',
+  },
+
   h1: {
     fontSize: 40,
     textAlign: 'center',
@@ -41,6 +45,14 @@ export default StyleSheet.create({
 
   backgroundBlue: {
     backgroundColor: 'dodgerblue',
+  },
+
+  backgroundSky: {
+    backgroundColor: 'skyblue',
+  },
+
+  backgroundLavender: {
+    backgroundColor: 'lavender',
   },
 
   backgroundRed: {

@@ -1,39 +1,29 @@
 import React from 'react';
-import { ListItem, Icon, Image } from 'react-native-elements';
+import { ListItem, Icon, Avatar } from 'react-native-elements';
 import styles from '../../Styles';
 
 export default function ItemWeather(props){
-  const { key, title, iconType, icon, iconColor, onPress, iconFromApi = false } = props;
-
-  return(
-    <ListItem button onPress={onPress} key={key} bottomDivider style={styles.listItem} >
-      <ListItem.Content>
-        <ListItem.Title>{title}</ListItem.Title>
-      </ListItem.Content>
-        { iconFromApi
-          ? <Image
-              source={require(iconFromApi)}
-            />
-          : <Icon            
-              type={iconType}
-              name={icon}
-              color={iconColor}
-            />
-        }
-    </ListItem>
-  );       
-}
-
-export function CityListItem(props){
-  const { title, onPress } = props;
+  const { title, onPress, iconFromApi } = props;
 
   return(
     <ListItem button onPress={onPress} bottomDivider style={styles.listItem} >
       <ListItem.Content>
         <ListItem.Title>{title}</ListItem.Title>
       </ListItem.Content>
-        <Image
-        />
+      <Avatar source={{uri: iconFromApi}} />
+    </ListItem>
+  );       
+}
+
+export function CityListItem(props){
+  const { title, onPress, iconFromApi } = props;
+
+  return(
+    <ListItem button onPress={onPress} bottomDivider style={styles.listItem} >
+      <ListItem.Content>
+        <ListItem.Title>{title}</ListItem.Title>
+      </ListItem.Content>      
+      <Avatar source={{uri: iconFromApi}} />
     </ListItem>
   );       
 }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Platform } from 'react-native';
-import * as SQLite from "expo-sqlite";
 import styles from '../../Styles';
 import { Overlay, Button, Image } from 'react-native-elements';
 import { db } from '../../App';
@@ -17,15 +16,27 @@ export default function Modal(props){
 }
 
 export function ItemWeatherModal(props){
-  const { visible, toggleOverlay, isPrincipal } = props;
+  const { visible, toggleOverlay, selectedId, isPrincipal, afterAction = null } = props;
 
   return(
     <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
       { isPrincipal
-        ? <Button buttonStyle={[styles.backgroundRed, styles.margin]} title="Eliminar ciudad principal" />
-        : <Button buttonStyle={[styles.backgroundBlue, styles.margin]} title="Elegir como ciudad principal" />
+        ? <Button
+            buttonStyle={[styles.backgroundRed, styles.margin]}
+            title="Eliminar ciudad principal"
+            onPress={() => deletePrincipal(selectedId, toggleOverlay, afterAction)}
+          />
+        : <Button
+            buttonStyle={[styles.backgroundBlue, styles.margin]}
+            title="Elegir como ciudad principal"
+            onPress={() => setPrincipal(selectedId,toggleOverlay)}
+          />
       }
-      <Button buttonStyle={[styles.backgroundRed, styles.margin]} title="Eliminar de ciudades guardadas" />
+      <Button
+        buttonStyle={[styles.backgroundRed, styles.margin]}
+        title="Eliminar de ciudades guardadas"
+        onPress={() => deleteCity(selectedId, toggleOverlay, afterAction)}
+      />
     </Overlay>
   );
 }
@@ -63,3 +74,48 @@ export function ItemWeatherAgregar(props){
     </Overlay>
   );
 }
+
+const setPrincipal = (id, toggleOverlay) => {
+  db.transaction(
+    (tx) => {
+      tx.executeSql(`update ciudades set main = 0 where main = 1;`, []);
+      tx.executeSql(`update ciudades set main = 1 where id = ?;`, [id]);
+      tx.executeSql("select * from ciudades", [], (_, { rows }) =>
+        console.log(JSON.stringify(rows))
+      );
+    },
+    null,
+  );
+  toggleOverlay();
+  console.log("Set Principal");
+};
+
+const deletePrincipal = (id, toggleOverlay, afterAction) => {
+  db.transaction(
+    (tx) => {
+      tx.executeSql(`update ciudades set main = 0 where id = ?;`, [id]);
+      tx.executeSql("select * from ciudades", [], (_, { rows }) =>
+        console.log(JSON.stringify(rows))
+      );
+    },
+    null,
+  );
+  afterAction();
+  toggleOverlay();
+  console.log("Ejecutada deletePrincipal");
+};
+
+const deleteCity = (id, toggleOverlay, afterAction) => {
+  db.transaction(
+    (tx) => {
+      tx.executeSql(`delete from ciudades where id = ?;`, [id]);
+      tx.executeSql("select * from ciudades", [], (_, { rows }) =>
+        console.log(JSON.stringify(rows))
+      );
+    },
+    null,
+  );
+  afterAction();
+  toggleOverlay();
+  console.log("Ejecutada deleteCity");
+};

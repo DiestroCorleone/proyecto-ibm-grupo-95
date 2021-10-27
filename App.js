@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import * as SQLite from "expo-sqlite";
 import Navigation from './app/navigations/Navigation';
 
+/* Se crea la conexión a base de datos, que luego se exportará al resto de la app */
 function openDatabase() {
   if (Platform.OS === "web") {
     return {
@@ -22,6 +23,7 @@ export const db = openDatabase();
 
 export default function App() {
 
+/* Se crea la base de datos, si no existe */
   React.useEffect(() => {
     db.transaction((tx) => {
       tx.executeSql(

@@ -2,7 +2,6 @@ import React from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from 'react-native-elements';
-
 import HomeStack from "../navigations/HomeStack";
 import CityListStack from "../navigations/CityListStack";
 import MapStack from "../navigations/MapStack";
@@ -25,17 +24,42 @@ export default function Navigation(){
         <Tab.Screen
           name="home"
           component={ HomeStack }
-          options={{ title: "Home" }}
+          options={{ 
+            title: "Home",
+            headerTintColor: 'white',
+            headerStyle: {
+              backgroundColor: 'mediumpurple',
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
         />
         <Tab.Screen
           name="cityList"
           component={ CityListStack }
-          options={{ title: "Lista de Ciudades" }}
+          options={{ title: "Ciudades Guardadas",
+            headerTintColor: 'white',
+            headerStyle: {
+              backgroundColor: 'mediumpurple',
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
         />
         <Tab.Screen
           name="map"
           component={ MapStack }
-          options={{ title: "Mapa" }}
+          options={{ title: "Mapa",
+            headerTintColor: 'white',
+            headerStyle: {
+              backgroundColor: 'mediumpurple',
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },          
+          }}
         />
       </Tab.Navigator>
     </NavigationContainer>
