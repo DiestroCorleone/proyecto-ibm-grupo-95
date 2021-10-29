@@ -58,5 +58,6 @@ una ciudad se deberá desplegar la temperatura del lugar.
 - [x] Persistencia de datos.
 - [ ] Estilos y más.
 - [ ] Mostrar ciudades en mapa.
+- [ ] Corregir bug de screen Map, luego de buscar una ciudad y no cambiar el texto en la searchbar, el mismo debe sufrir alguna modificación para ser detectado (probable problema de onChange).
 - [ ] Borrar contenido searchbar después de búsqueda.
 - [ ] Añadir funcionalidad de búsqueda a Searchbar de screen Ciudades Guardadas.

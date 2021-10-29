@@ -12,16 +12,19 @@ export default function CityList(){
   const [cityList, setCityList] = useState([]);
   const [selectedId, setSelectedId] = useState([]);
   const [refreshing, setRefreshing] = React.useState(false);
+
+  /* Muestra u oculta modal */
   const toggleWeatherOverlay = (id) => {
     setVisibleWeather(!visibleWeather);
     setSelectedId(id);
   };
 
+  /* Se carga la lista de ciudades guardadas si las hay. */
+
   const loadSavedCities = () => {
     db.transaction((tx) => {      
         tx.executeSql("select * from ciudades", [], 
         (sqlTx,res)=>{
-          /*console.log(res.rows.item(0).id);*/
           let len = res.rows.length;
 
           if (len > 0) {
@@ -36,23 +39,12 @@ export default function CityList(){
             setCityList(null);
           }
         }        
-        /*(_, { rows }) =>   setCityList(JSON.stringify(rows))*/
         );
     null,
     console.log("Ejecutada loadSavedCities");
     });
   };
-/*
-  useEffect(()=> {
-    async function getCities() {
-      await loadSavedCities();
-    }
-    getCities();
-  },[]);
 
- /* const renderCityList = cityList.map((item,index) =>{
-    return <Text>{item}</Text>
-  });*/
 
   /* Ejecuta la función loadSavedCities al enfocar la pantalla  */
   useFocusEffect(

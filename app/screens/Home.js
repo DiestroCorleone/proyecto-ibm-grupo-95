@@ -25,11 +25,12 @@ export default function Home(){
     setSelectedId(id);
   };
 
+  /* Se carga la ciudad principal, si la hay */
+
   const loadPrincipal = () => {
     db.transaction((tx) => {      
         tx.executeSql("select id, city, weatherIcon from ciudades where main = 1", [], 
         (sqlTx,res)=>{
-          /*console.log(res.rows.item(0).id);*/
           let len = res.rows.length;
 
           if (len > 0) {
@@ -44,7 +45,6 @@ export default function Home(){
             setPrincipal(null);
           }
         }        
-        /*(_, { rows }) =>   setCityList(JSON.stringify(rows))*/
         );
     null,
     console.log("Ejecutada loadPrincipal");

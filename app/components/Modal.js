@@ -75,6 +75,8 @@ export function ItemWeatherAgregar(props){
   );
 }
 
+/*Funciones relativas a base de datos*/
+
 const setPrincipal = (id, toggleOverlay) => {
   db.transaction(
     (tx) => {
