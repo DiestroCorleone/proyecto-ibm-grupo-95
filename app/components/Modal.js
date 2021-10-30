@@ -42,10 +42,10 @@ export function ItemWeatherModal(props){
 }
 
 export function ItemWeatherAgregar(props){
-  const { visible, toggleOverlay, ciudad, icon, countryObject } = props;
+  const { visible, toggleOverlay, ciudad, icon, countryObject, afterAction } = props;
 
   /*Guardamos datos ciudad*/
-  const saveCity = (id, city, country, lon, lat, weatherIcon) => {
+  const saveCity = (id, city, country, lon, lat, weatherIcon, afterAction) => {
     db.transaction(
       (tx) => {
         tx.executeSql("insert into ciudades (id, city, country, lon, lat, weatherIcon) values (?,?,?,?,?,?)", [id, city, country, lon, lat, weatherIcon]);
@@ -55,6 +55,7 @@ export function ItemWeatherAgregar(props){
       },
       null,
     );
+    afterAction();
     toggleOverlay();
   };
   /*End Guardamos datos ciudad*/
@@ -69,7 +70,7 @@ export function ItemWeatherAgregar(props){
       <Button
         buttonStyle={[styles.backgroundBlue, styles.margin]}
         title="Agregar a mis ciudades"
-        onPress={() => saveCity(countryObject[0], countryObject[1], countryObject[2], countryObject[3], countryObject[4], countryObject[5])}
+        onPress={() => saveCity(countryObject[0], countryObject[1], countryObject[2], countryObject[3], countryObject[4], countryObject[5], afterAction)}
         />
     </Overlay>
   );
@@ -121,3 +122,4 @@ const deleteCity = (id, toggleOverlay, afterAction) => {
   toggleOverlay();
   console.log("Ejecutada deleteCity");
 };
+

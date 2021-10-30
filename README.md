@@ -57,7 +57,9 @@ una ciudad se deberá desplegar la temperatura del lugar.
 - [x] Integración con API Weather.
 - [x] Persistencia de datos.
 - [ ] Estilos y más.
-- [ ] Mostrar ciudades en mapa.
+- [x] Mostrar ciudades en mapa.
 - [ ] Corregir bug de screen Map, luego de buscar una ciudad y no cambiar el texto en la searchbar, el mismo debe sufrir alguna modificación para ser detectado (probable problema de onChange).
 - [ ] Borrar contenido searchbar después de búsqueda.
 - [ ] Añadir funcionalidad de búsqueda a Searchbar de screen Ciudades Guardadas.
+- [ ] (Opcional) Al hacer click sobre un marker en el mapa, mostrar o bien el clima, o las opciones de _elegir como ciudad principal_ o _eliminar de ciudades guardadas_.
+- [ ] Que los CityList Item muestren más datos.

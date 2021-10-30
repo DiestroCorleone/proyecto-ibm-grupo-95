@@ -27,7 +27,7 @@ export default function App() {
   React.useEffect(() => {
     db.transaction((tx) => {
       tx.executeSql(
-        "create table if not exists ciudades (id text primary key not null, city text, country text, lon text, lat text, weatherIcon text, main bool);",
+        "create table if not exists ciudades (id text primary key not null, city text, country text, lon double, lat double, weatherIcon text, main bool);",
       );
       tx.executeSql("select * from ciudades", [], (_, { rows }) =>
           console.log(JSON.stringify(rows))

@@ -45,7 +45,6 @@ export default function CityList(){
     });
   };
 
-
   /* Ejecuta la función loadSavedCities al enfocar la pantalla  */
   useFocusEffect(
     React.useCallback(() => {

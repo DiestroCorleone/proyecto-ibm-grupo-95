@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { View, Text, Image, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image, Alert, StyleSheet } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 import { Searchbar } from 'react-native-paper';
 import { size, isEmpty, isUndefined } from 'lodash';
@@ -7,6 +8,8 @@ import axios from 'axios';
 import styles from '../../Styles';
 import Loading from '../components/Loading';
 import { ItemWeatherAgregar } from '../components/Modal';
+import MapComponent from '../components/MapComponent';
+import { db } from '../../App';
 
 export default function Map(){
   const [visible, setVisible] = useState(false);
@@ -22,6 +25,7 @@ export default function Map(){
   const [lon, setLon] = useState([]);
   const [lat, setLat] = useState([]);
   /* End Seteamos datos ciudad*/
+  const [markers, setMarkers] = useState([]);
 
   const onChange = (e, type) => {//Toma un dato que va a cambiar, y el tipo de dato.
     setCity({ ...city, [type]: e.nativeEvent.text});//El Spread operator (...) pasa por todos los parámetros de un elemento.
@@ -32,7 +36,8 @@ export default function Map(){
     setVisibleWeather(!visibleWeather);
   };
 
-  const appId = {YOUR_API_KEY};
+  const appId = '8907f766ae142af38c94180fc7c47fb0';
+  const appId2= 'b56c40b48aeb051f57445cb43486257b';
 
 // API request con Axios
 const consumeApi = () => {
@@ -73,23 +78,53 @@ const consumeApi = () => {
       })
     }
 };
+
+// Carga markers
+const loadSavedMarkers = () => {
+    db.transaction((tx) => {      
+        tx.executeSql("select id, city, lon, lat from ciudades", [], 
+        (sqlTx,res)=>{
+          let len = res.rows.length;
+
+          if (len > 0) {
+            let results = [];
+            for (let i = 0; i < len; i++) {
+              let item = res.rows.item(i);
+              console.log(item);
+              results.push({ id: item.id, city: item.city, lon: item.lon, lat: item.lat});
+            }
+            setMarkers(results);
+            console.log("Luego de setMarkers: "+results);
+          }else if(len == 0){
+            setMarkers(null);
+          }
+        }        
+        );
+    null,
+    console.log("Ejecutada loadSavedMarkers como AfterAction");
+    });
+  };
   
-  
+  /* Ejecuta la función loadSavedCities al enfocar la pantalla  */
+  useFocusEffect(
+    React.useCallback(() => {
+        loadSavedMarkers();
+    }, [])
+  );
+
   return (
     <View style={[styles.flex, styles.alignTop,styles.backgroundSky]}>
       <Searchbar
         placeholder="Ingresá el nombre de una ciudad..."
-        onChange={(e) => onChange(e, "cyName")}
+        onChange={(e) => onChange(e, "cityName")}
         onIconPress={consumeApi}
         style={styles.marginSmall}
       />
+      <View>
+      <MapComponent markers={markers} />
+     </View> 
     <Loading isVisible={loading} text={"Buscando ciudad"} />
-      <Image
-        source={require("../../assets/img/map.png")}
-        resizeMode="contain"
-        style={styles.imageResponsive}
-      />
-      <ItemWeatherAgregar visible={visibleWeather} toggleOverlay={toggleWeatherOverlay} ciudad={data.name} icon={weatherIcon} countryObject={[id, city, country, lon, lat, weatherIcon]} />
+      <ItemWeatherAgregar visible={visibleWeather} toggleOverlay={toggleWeatherOverlay} ciudad={data.name} icon={weatherIcon} countryObject={[id, city, country, lon, lat, weatherIcon]} afterAction={loadSavedMarkers} />
     </View>
   );
 }
