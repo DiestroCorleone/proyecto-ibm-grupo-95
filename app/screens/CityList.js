@@ -12,6 +12,7 @@ export default function CityList(){
   const [cityList, setCityList] = useState([]);
   const [selectedId, setSelectedId] = useState([]);
   const [refreshing, setRefreshing] = React.useState(false);
+  const [searchedCity, setSearchedCity] = useState('');
 
   /* Muestra u oculta modal */
   const toggleWeatherOverlay = (id) => {
@@ -32,7 +33,7 @@ export default function CityList(){
             for (let i = 0; i < len; i++) {
               let item = res.rows.item(i);
               console.log(item);
-              results.push({ id: item.id, city: item.city, country: item.country, lon: item.lon, lat: item.lat, weatherIcon: item.weatherIcon});
+              results.push({ id: item.id, city: item.city, temp: item.temp, country: item.country, lon: item.lon, lat: item.lat, weatherIcon: item.weatherIcon});
             }
             setCityList(results);
           }else if(len == 0){
@@ -57,12 +58,22 @@ export default function CityList(){
       <Searchbar
         placeholder="Ingresá el nombre de una ciudad..."
         style={ styles.marginSmall }
+        onChange={(event)=>{
+          setSearchedCity(event.nativeEvent.text);
+        }}
       />
     <ScrollView style={[styles.fullHeigth, styles.fullWidth ]} >
       { cityList &&
-        cityList.map((item, i) => (
+        cityList.filter((item)=>{
+          if(searchedCity == ''){
+            return item;
+          }else if(item.city.toLowerCase().includes(searchedCity.toLowerCase())){
+            return item;
+          }
+        }).map((item, i) => (
         <CityListItem
           title={item.city}
+          temp={item.temp}
           onPress={()=>toggleWeatherOverlay(item.id)}
           iconFromApi={item.weatherIcon}/>
         ))

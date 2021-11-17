@@ -11,12 +11,13 @@ En ese proyecto, generaremos una aplicación que consuma un servicio del clima y
 ciudades a un listado. Esta información deberá ser visualizada en un mapa. Cuando el usuario seleccione
 una ciudad se deberá desplegar la temperatura del lugar.
 
-## Tecnologías/conceptos a ser usados:
+## Tecnologías/conceptos usados:
 
 1. __Lenguaje de programación y Toolkit:__ React Native
 2. __Fuentes de datos:__ [API Weather](https://openweathermap.org/current)
 3. __Persistencia de datos:__ SQL Lite (Android) o Core Data (iOS)
 4. __Versionamiento de código:__ Git y Github
+5. __Fetch:__ [Axios](https://www.npmjs.com/package/react-native-axios)
 
 ## Colaboradores:
 
@@ -38,7 +39,7 @@ una ciudad se deberá desplegar la temperatura del lugar.
 ### Screens:
 
 * __Home:__ Muestra el título de la aplicación, el clima de la ciudad elegida como principal, y tiene dos botones/links (_Cómo usar la app_ y _Quiénes somos_) que abren un modal para mostar dicha info.
-* __Lista de ciudades:__ Presenta la lista de ciudades guardadas con su correspondiente clima.
+* __Lista de ciudades:__ Presenta la lista de ciudades guardadas con su correspondiente clima. Cuenta con una barra de búsqueda para filtrar ciudades de la lista.
 * __Mapa__: Cuenta con un mapa que muestra las ciudades guardadas, y un buscador para agregar más ciudades al listado. Cuenta con un buscador de ciudades. Al 23/10/2021 permite mostrar alerts de error de ingresarse una búsqueda vacía o menor a 3 caracteres, y mostrar nombre e ícono del clima de la ciudad buscada.
 
 ### Componentes:
@@ -58,8 +59,8 @@ una ciudad se deberá desplegar la temperatura del lugar.
 - [x] Persistencia de datos.
 - [ ] Estilos y más.
 - [x] Mostrar ciudades en mapa.
-- [ ] Corregir bug de screen Map, luego de buscar una ciudad y no cambiar el texto en la searchbar, el mismo debe sufrir alguna modificación para ser detectado (probable problema de onChange).
+- [x] Corregir bug de screen Map, luego de buscar una ciudad y no cambiar el texto en la searchbar, el mismo debe sufrir alguna modificación para ser detectado (probable problema de onChange).
 - [ ] Borrar contenido searchbar después de búsqueda.
-- [ ] Añadir funcionalidad de búsqueda a Searchbar de screen Ciudades Guardadas.
+- [x] Añadir funcionalidad de búsqueda a Searchbar de screen Ciudades Guardadas.
 - [ ] (Opcional) Al hacer click sobre un marker en el mapa, mostrar o bien el clima, o las opciones de _elegir como ciudad principal_ o _eliminar de ciudades guardadas_.
-- [ ] Que los CityList Item muestren más datos.
+- [x] Que los CityList Item muestren más datos.

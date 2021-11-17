@@ -29,7 +29,7 @@ export default function Home(){
 
   const loadPrincipal = () => {
     db.transaction((tx) => {      
-        tx.executeSql("select id, city, weatherIcon from ciudades where main = 1", [], 
+        tx.executeSql("select id, city, temp, weatherIcon from ciudades where main = 1", [], 
         (sqlTx,res)=>{
           let len = res.rows.length;
 
@@ -38,7 +38,7 @@ export default function Home(){
             for (let i = 0; i < len; i++) {
               let item = res.rows.item(i);
               console.log(item);
-              results.push({ id: item.id, city: item.city, weatherIcon: item.weatherIcon});
+              results.push({ id: item.id, city: item.city, temp: item.temp, weatherIcon: item.weatherIcon});
             }
             setPrincipal(results);
           }else if(len == 0){
@@ -70,6 +70,7 @@ export default function Home(){
         principal.map((item, i) => (
         <CityListItem
           title={item.city}
+          temp={item.temp}
           onPress={()=>toggleWeatherOverlay(item.id)}
           iconFromApi={item.weatherIcon}/>
         ))

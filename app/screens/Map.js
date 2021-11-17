@@ -15,6 +15,7 @@ export default function Map(){
   const [visible, setVisible] = useState(false);
   const [visibleWeather, setVisibleWeather] = useState(false);
   const [loading, setLoading] = useState(false); 
+  const [searchedCity, setSearchedCity] = useState('');
   
   /*Seteamos datos ciudad*/
   const [id, setId] = useState([]);
@@ -22,37 +23,33 @@ export default function Map(){
   const [data, setData] = useState([]);
   const [weatherIcon, setWeatherIcon] = useState([]);
   const [country, setCountry] = useState([]);
+  const [temp, setTemp] = useState([]);
   const [lon, setLon] = useState([]);
   const [lat, setLat] = useState([]);
   /* End Seteamos datos ciudad*/
   const [markers, setMarkers] = useState([]);
-
-  const onChange = (e, type) => {//Toma un dato que va a cambiar, y el tipo de dato.
-    setCity({ ...city, [type]: e.nativeEvent.text});//El Spread operator (...) pasa por todos los parámetros de un elemento.
-  };
   
   /* Muestra u oculta modal */
   const toggleWeatherOverlay = () => {
     setVisibleWeather(!visibleWeather);
   };
 
-  const appId = '8907f766ae142af38c94180fc7c47fb0';
-  const appId2= 'b56c40b48aeb051f57445cb43486257b';
+  const appId = {YOUR_APP_ID};
 
 // API request con Axios
 const consumeApi = () => {
-  if(isEmpty(city.cityName)){
+  if(isEmpty(searchedCity)){
       Alert.alert(
         "Weatherify dice:",
         "Por favor, ingresá el nombre de una ciudad",
       )
-    }else if(size(city.cityName) < 3){
+    }else if(size(searchedCity) < 3){
       Alert.alert(
         "Weatherify dice:",
         "Por favor ingresá al menos 3 caracteres.",
       )
     }else{
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city.cityName}&units=metric&appid=${appId}&lang=es`)
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=metric&appid=${appId}&lang=es`)
       .then(function (response) {
         setLoading(false);
         const json = response.data;
@@ -62,6 +59,7 @@ const consumeApi = () => {
         setLon(json.coord.lon);
         setLat(json.coord.lat);
         setCountry(json.sys.country);
+        setTemp(json.main.temp);
         console.log("Respuesta API: "+json);
         setVisibleWeather(!visibleWeather);
         console.log(response.data);
@@ -116,7 +114,11 @@ const loadSavedMarkers = () => {
     <View style={[styles.flex, styles.alignTop,styles.backgroundSky]}>
       <Searchbar
         placeholder="Ingresá el nombre de una ciudad..."
-        onChange={(e) => onChange(e, "cityName")}
+
+        onChange={(event) =>{
+          setSearchedCity(event.nativeEvent.text);
+        }}
+
         onIconPress={consumeApi}
         style={styles.marginSmall}
       />
@@ -124,7 +126,7 @@ const loadSavedMarkers = () => {
       <MapComponent markers={markers} />
      </View> 
     <Loading isVisible={loading} text={"Buscando ciudad"} />
-      <ItemWeatherAgregar visible={visibleWeather} toggleOverlay={toggleWeatherOverlay} ciudad={data.name} icon={weatherIcon} countryObject={[id, city, country, lon, lat, weatherIcon]} afterAction={loadSavedMarkers} />
+      <ItemWeatherAgregar visible={visibleWeather} toggleOverlay={toggleWeatherOverlay} ciudad={data.name} icon={weatherIcon} countryObject={[id, city, country, temp, lon, lat, weatherIcon]} afterAction={loadSavedMarkers} />
     </View>
   );
 }
