@@ -1,19 +1,20 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import styles from '../../Styles';
 
 export default function MapCompnent(props){
   const { markers } = props;
   return(
-    <View>
+    <View style={styles.map}> 
       <MapView
           style={styles.mapStyle}
           initialRegion={{
-          latitude: -34.603722,
-          longitude: -58.381592,
-          latitudeDelta: 15,
-          longitudeDelta: 15,
-        }}
+            latitude: -34.603722,
+            longitude: -58.381592,
+            latitudeDelta: 15,
+            longitudeDelta: 15,
+          }}
       >
           { markers &&
             markers.map((item, i) => (
@@ -31,10 +32,3 @@ export default function MapCompnent(props){
   );
 }
 
-const styles = StyleSheet.create({
-  mapStyle: {
-    width: "100%",
-    height: 400,
-    marginTop: 20,
-  },
-});

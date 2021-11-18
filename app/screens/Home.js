@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import styles from '../../Styles';
 import { Overlay } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -29,7 +29,7 @@ export default function Home(){
 
   const loadPrincipal = () => {
     db.transaction((tx) => {      
-        tx.executeSql("select id, city, temp, weatherIcon from ciudades where main = 1", [], 
+        tx.executeSql("select id, city, temp, weatherIcon from ciudades where main = 1", [],
         (sqlTx,res)=>{
           let len = res.rows.length;
 
@@ -60,25 +60,33 @@ export default function Home(){
   
   return (
     <View style={styles.flex} >
-    <LinearGradient
-      colors={['steelblue', 'cadetblue']}
-      style={styles.background}
-    />
+      <LinearGradient
+        colors={['#7012eb', '#07429b']}
+        style={styles.background}
+      />
       <View style={styles.alignCenter}>
-      <Text style={ [styles.h1, styles.textWhite] }>Weatherify</Text>
-      { principal &&
-        principal.map((item, i) => (
-        <CityListItem
-          title={item.city}
-          temp={item.temp}
-          onPress={()=>toggleWeatherOverlay(item.id)}
-          iconFromApi={item.weatherIcon}/>
-        ))
-      }
+        { principal &&
+          principal.map((item, i) => (
+            <CityListItem
+              title={item.city}
+              temp={item.temp}
+              onPress={()=>toggleWeatherOverlay(item.id)}
+              iconFromApi={item.weatherIcon}/>
+            ))
+          }
+
+          <Image 
+            source={require('../../assets/img/ImgHome.png')}
+            style = {styles.imgHome}  
+          />
+
+        <Text style={ [styles.h1, styles.textWhite] }>Weatherify</Text>
+        <Text style = {styles.homeFrase}>Check the weather from anywhere, anywhere</Text>
       </View>
       <View style={ [styles.flex, styles.column ] }>
       <View style={ [styles.row, styles.bottom, styles.spaceAround ] }>
-        <Text style={[styles.textWhite, styles.textButton, styles.backgroundPurple]} onPress={ () => toggleOverlay(comoUsar)}>Cómo usar la app</Text><Text style={[styles.textWhite, styles.textButton, styles.backgroundPurple]} onPress={ () => toggleOverlay(quienesSomos)}>Quiénes somos</Text>
+        <Text style={[styles.textWhite, styles.textButton, styles.backgroundPurple]} onPress={ () => toggleOverlay(comoUsar)}>Cómo usar la app</Text>
+        <Text style={[styles.textWhite, styles.textButton, styles.backgroundPurple]} onPress={ () => toggleOverlay(quienesSomos)}>Quiénes somos</Text>
       </View> 
       </View>
         <Modal visible={visible} toggleOverlay={toggleOverlay} modalText={modalText} />
@@ -87,6 +95,6 @@ export default function Home(){
   );
 }
 
-const comoUsar = "Cómo usar la app: Weatherify te ayudará a monitorear el clima en tiempo real, en las ciudades del mundo que vos elijas. Tenés que viajar? Administrás un negocio con sucursales en distintas partes del mundo? No te preocupes, con Weatherify estarás un paso adelante. En Home podrás ver tu ciudad preferida. El Lista de Ciudades tendrás acceso a las ciudades guardadas. Y en Mapa, podrás buscar y agregar a tus ciudades aquellas que prefieras, y visualizarlas en el mapa. Dando tap sobre cualquier ciudad, tanto en la Lista como en el Mapa, podrás ver el detalle del clima de esa ciudad, elegirla como principal, o eliminarla. Te hacemos fácil ver el pronóstico, te hacemos más fácil la vida :)";
+const comoUsar = "Weatherify te ayudará a monitorear el clima en tiempo real, en las ciudades del mundo que vos elijas. Tenés que viajar? Administrás un negocio con sucursales en distintas partes del mundo? No te preocupes, con Weatherify estarás un paso adelante. En Home podrás ver tu ciudad preferida. El Lista de Ciudades tendrás acceso a las ciudades guardadas. Y en Mapa, podrás buscar y agregar a tus ciudades aquellas que prefieras, y visualizarlas en el mapa. Dando tap sobre cualquier ciudad, tanto en la Lista como en el Mapa, podrás ver el detalle del clima de esa ciudad, elegirla como principal, o eliminarla. Te hacemos fácil ver el pronóstico, te hacemos más fácil la vida :)";
 
 const quienesSomos = "Quiénes somos: La historia del Grupo 95. PRÓXIMAMENTE";

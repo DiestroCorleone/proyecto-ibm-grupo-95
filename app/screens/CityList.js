@@ -6,6 +6,7 @@ import { db } from '../../App';
 import styles from '../../Styles';
 import ItemWeather, { CityListItem } from '../components/ItemWeather';
 import { ItemWeatherModal } from '../components/Modal';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function CityList(){
   const [visibleWeather, setVisibleWeather] = useState(false);
@@ -55,31 +56,38 @@ export default function CityList(){
 
   return (
     <View style={ [styles.flex, styles.alignCenter, styles.backgroundLavender]}>
+      <LinearGradient
+        colors={['#7012eb', '#07429b']}
+        style={styles.background}
+      />
       <Searchbar
-        placeholder="Ingresá el nombre de una ciudad..."
+        placeholder="Buscar..."
         style={ styles.marginSmall }
         onChange={(event)=>{
           setSearchedCity(event.nativeEvent.text);
         }}
       />
-    <ScrollView style={[styles.fullHeigth, styles.fullWidth ]} >
-      { cityList &&
-        cityList.filter((item)=>{
-          if(searchedCity == ''){
-            return item;
-          }else if(item.city.toLowerCase().includes(searchedCity.toLowerCase())){
-            return item;
+      <ScrollView style={[styles.fullHeigth, styles.fullWidth]} >
+        <View style= {styles.alignCenter}>
+          { cityList &&
+            cityList.filter((item)=>{
+            if(searchedCity == ''){
+              return item;
+            }else if(item.city.toLowerCase().includes(searchedCity.toLowerCase())){
+              return item;
+            }
+          }).map((item, i) => (
+            <CityListItem
+              title={item.city}
+              temp={item.temp}
+              onPress={()=>toggleWeatherOverlay(item.id)}
+              iconFromApi={item.weatherIcon}              
+            />
+            ))
           }
-        }).map((item, i) => (
-        <CityListItem
-          title={item.city}
-          temp={item.temp}
-          onPress={()=>toggleWeatherOverlay(item.id)}
-          iconFromApi={item.weatherIcon}/>
-        ))
-      }
-    </ScrollView>
-    <ItemWeatherModal visible={visibleWeather} afterAction={loadSavedCities} selectedId={selectedId} toggleOverlay={toggleWeatherOverlay} isPrincipal={false} />
+        </View>  
+      </ScrollView>
+      <ItemWeatherModal visible={visibleWeather} afterAction={loadSavedCities} selectedId={selectedId} toggleOverlay={toggleWeatherOverlay} isPrincipal={false} />
     </View>
   );
 }

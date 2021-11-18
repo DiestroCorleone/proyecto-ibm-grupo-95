@@ -42,10 +42,60 @@ export default StyleSheet.create({
   backgroundPurple: {
     backgroundColor: 'mediumpurple',
   },
-
-  backgroundBlue: {
-    backgroundColor: 'dodgerblue',
+  
+  overlay: {
+    width: '80%',
+    height: '80%',
+    borderRadius:30,
+    padding:20,
+    backgroundColor:'#fff',
   },
+
+  TextModal:{
+    fontSize:18,
+    marginBottom:30,
+    color:'#000',
+    height:'85%',
+
+  },
+
+  buttonContent:{
+    width:'100%',
+    flex:1,
+    alignItems: 'flex-end',
+    justifyContent:'flex-end',
+  },
+
+  BtnModal: {
+    backgroundColor: '#a3000e',
+    borderRadius:100,
+    width:100,
+    
+  },
+
+  overlayCity:{
+    height:200,
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:30,
+  },  
+
+  BtnCity:{
+    width:200,
+    borderRadius:20,
+    margin:10,
+    padding:12,
+  },
+
+  overlayCityAdd:{
+
+    justifyContent:'center',
+    alignContent:'center',
+    width:250,
+    height:350,
+    borderRadius:30,
+  },
+
 
   backgroundSky: {
     backgroundColor: 'skyblue',
@@ -66,6 +116,15 @@ export default StyleSheet.create({
   textButton: {
     padding: 15,    
     borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 7,
   },
 
   bottom: {
@@ -73,12 +132,7 @@ export default StyleSheet.create({
   },
 
   margin: {
-    margin: '1%',
-  },
-
-  overlay: {
-    width: '80%',
-    height: '80%',
+    marginLeft:30,
   },
 
   imageResponsive: {
@@ -122,5 +176,31 @@ export default StyleSheet.create({
     width: 200,
     height: 100,
     textAlign: "center",
-  }
+  },
+
+  homeFrase:{
+    color: '#fff',
+    fontSize:17,
+    marginTop:20,
+  },
+
+  imgHome:{
+    width:300,
+    height:180,
+    marginBottom:30,
+    marginTop:30,
+  },
+
+  mapStyle:{
+    width: "90%",
+    height: 400,
+    marginTop: 30,
+  },
+
+  map: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  
 });

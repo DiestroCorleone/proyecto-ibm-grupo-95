@@ -10,13 +10,14 @@ import Loading from '../components/Loading';
 import { ItemWeatherAgregar } from '../components/Modal';
 import MapComponent from '../components/MapComponent';
 import { db } from '../../App';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function Map(){
   const [visible, setVisible] = useState(false);
   const [visibleWeather, setVisibleWeather] = useState(false);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const [searchedCity, setSearchedCity] = useState('');
-  
+
   /*Seteamos datos ciudad*/
   const [id, setId] = useState([]);
   const [city, setCity] = useState([]);
@@ -28,13 +29,13 @@ export default function Map(){
   const [lat, setLat] = useState([]);
   /* End Seteamos datos ciudad*/
   const [markers, setMarkers] = useState([]);
-  
+
   /* Muestra u oculta modal */
   const toggleWeatherOverlay = () => {
     setVisibleWeather(!visibleWeather);
   };
 
-  const appId = {YOUR_APP_ID};
+  const appId = {YOUR_API_KEY};
 
 // API request con Axios
 const consumeApi = () => {
@@ -112,6 +113,10 @@ const loadSavedMarkers = () => {
 
   return (
     <View style={[styles.flex, styles.alignTop,styles.backgroundSky]}>
+      <LinearGradient
+        colors={['#7012eb', '#07429b']}
+        style={styles.background}
+      />
       <Searchbar
         placeholder="Ingresá el nombre de una ciudad..."
 
@@ -122,10 +127,10 @@ const loadSavedMarkers = () => {
         onIconPress={consumeApi}
         style={styles.marginSmall}
       />
-      <View>
+      
       <MapComponent markers={markers} />
-     </View> 
-    <Loading isVisible={loading} text={"Buscando ciudad"} />
+      
+      <Loading isVisible={loading} text={"Buscando ciudad"} />
       <ItemWeatherAgregar visible={visibleWeather} toggleOverlay={toggleWeatherOverlay} ciudad={data.name} icon={weatherIcon} countryObject={[id, city, country, temp, lon, lat, weatherIcon]} afterAction={loadSavedMarkers} />
     </View>
   );

@@ -26,9 +26,9 @@ export default function Navigation(){
           component={ HomeStack }
           options={{ 
             title: "Home",
-            headerTintColor: 'white',
+            headerTintColor: '#000',
             headerStyle: {
-              backgroundColor: 'mediumpurple',
+              backgroundColor: '#fff',
             },
             headerTitleStyle: {
               fontWeight: 'bold',
@@ -39,26 +39,26 @@ export default function Navigation(){
           name="cityList"
           component={ CityListStack }
           options={{ title: "Ciudades Guardadas",
-            headerTintColor: 'white',
-            headerStyle: {
-              backgroundColor: 'mediumpurple',
-            },
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
+          headerTintColor: '#000',
+          headerStyle: {
+            backgroundColor: '#fff',
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
           }}
         />
         <Tab.Screen
           name="map"
           component={ MapStack }
           options={{ title: "Mapa",
-            headerTintColor: 'white',
-            headerStyle: {
-              backgroundColor: 'mediumpurple',
-            },
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },          
+          headerTintColor: '#000',
+          headerStyle: {
+            backgroundColor: '#fff',
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },          
           }}
         />
       </Tab.Navigator>
