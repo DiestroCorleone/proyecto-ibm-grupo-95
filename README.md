@@ -1,7 +1,7 @@
 # Curso de especialización en desarrollo mobile - Codo a Codo | IBM Skillsbuild
 ## Proyecto grupal: aplicación para celular sobre el clima
 
-[![GitHub version](https://badge.fury.io/gh/DiestroCorleone%2Fproyecto-ibm-grupo-95.svg)](https://badge.fury.io/gh/DiestroCorleone%2Fproyecto-ibm-grupo-95)
+![v1.0.0](https://img.shields.io/github/v/release/DiestroCorleone/proyecto-ibm-grupo-95?display_name=tag)
 
 [Ver en Snack](https://snack.expo.dev/@diestro/-proyecto-ibm-grupo-95)
 
