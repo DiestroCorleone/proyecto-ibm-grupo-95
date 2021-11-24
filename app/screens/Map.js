@@ -63,6 +63,7 @@ const consumeApi = () => {
         setTemp(json.main.temp);
         console.log("Respuesta API: "+json);
         setVisibleWeather(!visibleWeather);
+        setSearchedCity('');
         console.log(response.data);
       })
       .catch(function (error) {
@@ -125,6 +126,7 @@ const loadSavedMarkers = () => {
         }}
 
         onIconPress={consumeApi}
+        value={searchedCity}
         style={styles.marginSmall}
       />
       

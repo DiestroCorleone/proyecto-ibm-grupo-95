@@ -1,6 +1,8 @@
 # Curso de especialización en desarrollo mobile - Codo a Codo | IBM Skillsbuild
 ## Proyecto grupal: aplicación para celular sobre el clima
 
+[![GitHub version](https://badge.fury.io/gh/DiestroCorleone%2Fproyecto-ibm-grupo-95.svg)](https://badge.fury.io/gh/DiestroCorleone%2Fproyecto-ibm-grupo-95)
+
 [Ver en Snack](https://snack.expo.dev/@diestro/-proyecto-ibm-grupo-95)
 
 [Repositorio en GitHub](https://github.com/DiestroCorleone/proyecto-ibm-grupo-95/)
@@ -27,6 +29,21 @@ una ciudad se deberá desplegar la temperatura del lugar.
 * @DiestroCorleone
 
 ## Detalles del Proyecto
+
+## Paper Prototyping:
+
+![Paper Prototyping](misc/paper-prototyping.JPG)
+
+## Figma Prototyping:
+
+![Figma Prototyping 0](misc/proto1.jpg)
+![Figma Prototyping 1](misc/proto2.jpg)
+![Figma Prototyping 2](misc/proto3.jpg)
+![Figma Prototyping 3](misc/proto4.jpg)
+
+## Persona Canvas:
+
+[Descargar en PDF](misc/persona-canvas.pdf)
 
 ### Nombre de la app:
 
