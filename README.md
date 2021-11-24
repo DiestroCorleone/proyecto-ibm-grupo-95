@@ -3,7 +3,7 @@
 
 ![v1.0.0](https://img.shields.io/github/v/release/DiestroCorleone/proyecto-ibm-grupo-95?display_name=tag)
 
-[Ver en Snack](https://snack.expo.dev/@diestro/-proyecto-ibm-grupo-95)
+[Ver en Snack](https://snack.expo.dev/@diestro/proyecto-ibm-final)
 
 [Repositorio en GitHub](https://github.com/DiestroCorleone/proyecto-ibm-grupo-95/)
 
