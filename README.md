@@ -65,6 +65,14 @@ una ciudad se deberá desplegar la temperatura del lugar.
 * __Modal:__ Modales emergente, importan Overlay de React Native, reutilizables. Permiten agregar/eliminar a ciudades principales/guardadas.
 * __Loading:__ Spinner que muestra pantalla de carga mientras se realizan diversos procesos.
 
+### Funciones Principales:
+* ```openDatabase()```: Se ejecuta en [App.js](https://github.com/DiestroCorleone/proyecto-ibm-grupo-95/blob/master/App.js), y desde allí es llamada desde cualquier parte de la app donde se necesite conexión a la base de datos.
+* ```loadPrincipal()```: Presente en [Home.js](https://github.com/DiestroCorleone/proyecto-ibm-grupo-95/blob/master/app/screens/Home.js), cada vez que se enfoque dicha screen, traerá la ciudad elegida como prinicipal, de haber alguna.
+* ```loadSavedCities()```: Se encuentra en la screen [CityList.js](https://github.com/DiestroCorleone/proyecto-ibm-grupo-95/blob/master/app/screens/CityList.js), y buscará las ciudades guardadas (de haberlas) cada vez que se enfoque la screen.
+* ```consumeApi()```: Se halla en la screen [Map.js](https://github.com/DiestroCorleone/proyecto-ibm-grupo-95/blob/master/app/screens/Map.js), y es la que ejecuta la consulta a la API empleando Axios.
+* ```loadSavedMarkers()```: También en Map, cargará los marcadores del mapa cuando se agreguen a la misma o se enfoque la screen.
+* ```saveCity(); setPrincipal(); deletePrincipal(); deleteCity()```: Todas en el componente [Modal.js](https://github.com/DiestroCorleone/proyecto-ibm-grupo-95/blob/master/app/components/Modal.js), hacen lo que su nombre indica; __guardar__ una ciudad, __elegirla__ como principal, __eliminarla__ como prinicipal, o __eliminarla__ por completo de las ciudades guardadas.
+
 ### Styles: 
 
 * En el archivo __Styles.js__, los estilos están separados en diferentes clases con pocas características, volviéndolas así combinables y aplicables a cualquier elemento de nuestra apliacación.
