@@ -52,7 +52,7 @@ export default StyleSheet.create({
   },
 
   TextModal:{
-    fontSize:18,
+    fontSize: 12,
     marginBottom:30,
     color:'#000',
     height:'85%',

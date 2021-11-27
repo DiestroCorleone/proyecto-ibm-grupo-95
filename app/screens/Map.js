@@ -35,7 +35,7 @@ export default function Map(){
     setVisibleWeather(!visibleWeather);
   };
 
-  const appId = {YOUR_API_KEY};
+  const appId = 'ff1b03229e0538b78aebdbe11a3be644';
 
 // API request con Axios
 const consumeApi = () => {
